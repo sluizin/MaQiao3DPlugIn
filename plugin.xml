@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<runtime>
+		<library name="lib/"/>
+   </runtime>
+   <extension
+         id="maqiao.popupMenus"
+         name="popupMenus"
+         point="org.eclipse.ui.popupMenus">
+         <!--
+      <objectContribution adaptable = "true" objectClass="org.eclipse.jdt.core.IJavaElement"
+       id="maqiao.contrJava" nameFilter="*.java">
+         <menu
+               label="MQReflected3D"
+               path="additions"
+               id="maqiao.menu1">
+            <separator name="group1">
+            </separator>
+         </menu>
+         <action
+               class="com.maqiao.was.plugin.JavaReflected3DAction"
+               enablesFor="1"
+               id="maqiao.newAction"
+               label="转换文件"
+               menubarPath="maqiao.menu1/group1"
+               style="push">
+		        <enablement> 
+		           <objectState
+		                 name="firstName"
+		                 value="Close"> 
+		           </objectState> 
+		        </enablement> 
+         </action>
+      </objectContribution>-->
+      <objectContribution adaptable = "true" objectClass="org.eclipse.jdt.core.IType" id="maqiao.contrMethod">
+         <menu
+               label="MQReflected3D"
+               path="additions"
+               id="maqiao.menu1">
+            <separator name="group2">
+            </separator>
+         </menu>
+         <action
+               label="转换Class"
+               class="com.maqiao.was.plugin.JavaReflected3DActionClass"
+               definitionId="maqiao.Command"
+               menubarPath="maqiao.menu1/group2"
+               enablesFor="1"
+               icon="icons/tips_open.gif"
+               id="maqiao.newActionClass">
+         </action>
+         <action
+               class="com.maqiao.was.plugin.JavaReflected3DAction"
+               enablesFor="1"
+               icon="icons/tips_close.gif"
+               id="maqiao.newActionField"
+               label="转换属性"
+               menubarPath="maqiao.menu1/group2"
+               state="false">
+		        <enablement> 
+		           <objectState
+		                 name="firstName"
+		                 value="Close"> 
+		           </objectState> 
+		        </enablement>
+         </action>
+         <action
+               label="转换方法"
+               class="com.maqiao.was.plugin.JavaReflected3DActionMethod"
+               menubarPath="maqiao.menu1/group2"
+               enablesFor="1"
+               icon="icons/tips_close.gif"
+               id="maqiao.newActionMethod">
+		        <enablement> 
+		           <objectState
+		                 name="firstName"
+		                 value="Close"> 
+		           </objectState> 
+		        </enablement>
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="com.maqiao.was.plugin.PerspectivesAction"
+            fixed="false"
+            icon="icons/change.gif"
+            id="PerspectivesAction"
+            name="MaQiao3D">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+         <view  class="com.maqiao.was.plugin.ViewClass"
+         name = "MQview"
+         id="com.maqiao.was.plugin.viewClass"
+         />         
+   </extension>
+   <!--
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="maqiao.Command"
+            class="com.maqiao.was.plugin.JavaReflected3DActionClass">
+      </handler>
+   </extension>-->
+   
+   <extension point="org.eclipse.ui.commands">   
+   	<category
+            name="MaQiao Category"
+            id="com.maqiao.was.plugin.category">
+      </category>
+      <command  
+            categoryId="com.maqiao.was.plugin.category"  
+            id="maqiao.Command"  
+            name="name demo">  
+      </command>  
+   </extension>
+   <extension point="org.eclipse.ui.handlers">
+      <handler
+            commandId="maqiao.Command"
+            class="com.maqiao.was.plugin.JavaReflected3DActionClass">
+      </handler>
+   </extension>
+   <!--
+   viewmenu.testcontext
+   contextId="org.eclipse.ui.contexts.window" 
+   -->
+   <extension point="org.eclipse.ui.bindings">
+      <key
+            commandId="maqiao.Command"
+            contextId="org.eclipse.ui.contexts.window" 
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="CTRL+`">
+      </key>
+   </extension>
+</plugin>
